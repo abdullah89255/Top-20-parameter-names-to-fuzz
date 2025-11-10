@@ -264,13 +264,23 @@ if __name__ == "__main__":
 * If in doubt, ask the security contact before testing (copy/paste the scope confirmation template from earlier).
 
 ---
+Done — I created a ready-to-run Python fuzzer in the canvas named **Async Param Fuzzer Json Headers**. It supports JSON POST body fuzzing and header fuzzing (non-destructive payloads by default), plus usage examples and safe-mode notes.
 
-# 8) Next steps — how I can help you right now
+How to run it (quick start)
 
-Pick one and I’ll deliver it immediately:
+1. Save your target list in `seed_urls.txt` (one URL or host per line). If a line is just a host, the script will use `https://host/` automatically.
+2. From the same folder as the fuzzer file, run either:
 
-* I’ll **customize the Python fuzzer** to test JSON POST bodies and headers for a specific target you give (non-destructive only).
-* I’ll **generate a parameter + payload list** tuned for a particular tech stack (e.g., GraphQL, Node.js API, or WordPress).
-* I’ll **review one of your fuzzer results** (paste a few entries) and point out which look promising.
+   * GET fuzz: `python3 async_param_fuzzer_json_headers.py --input seed_urls.txt --outdir out/example.com --method GET`
+   * POST JSON fuzz with a template: `python3 async_param_fuzzer_json_headers.py --input seed_urls.txt --outdir out/example.com --method POST --json-template-path template.json`
+3. Check `out/example.com/fuzzer_hits.txt` for hits and errors.
 
-Which do you want me to do next?
+Safety reminder: only test assets that are explicitly in-scope for you. The fuzzer uses conservative payloads and only performs GET/POST requests, but you are responsible for following the program policy.
+
+Want me to:
+
+* Tweak the payload lists for a specific tech stack (GraphQL, WordPress, Node.js API)?
+* Add POST form (`application/x-www-form-urlencoded`) fuzzing and multipart file upload testing?
+* Convert this into a Dockerfile or a small CLI package?
+
+
